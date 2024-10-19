@@ -36,7 +36,7 @@ export class OrdersModel {
         return order;
     }
 
-    static update(id: string, orderData: Partial<Orders>): Orders {
+    static update(id: string, orderData: Partial<Orders>): Orders | null {
         const order = OrdersModel.findById(id);
         if (!order) return null;
         Object.assign(order, orderData, {updated: new Date()});

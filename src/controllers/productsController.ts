@@ -19,22 +19,22 @@ export class ProductsController {
 
     // CREATE
     createProduct(req: Request, res: Response) {
-        const createProductsDto: CreateProductsDto = req.body;
-        const category = CategoriesModel.findById(createProductsDto.categoryId);
+        const createProductDto: CreateProductsDto = req.body;
+        const category = CategoriesModel.findById(createProductDto.categoryId);
         if (!category) return res.status(400).json({message: 'Invalid category ID'});
 
-        const product = ProductsModel.create(createProductsDto);
+        const product = ProductsModel.create(createProductDto);
         res.status(201).json(product);
     }
 
     // UPDATE
     updateProduct(req: Request, res: Response) {
-        const updateProductsDto: UpdateProductsDto = req.body;
-        if (updateProductsDto.categoryId) {
-            const category = CategoriesModel.findById(updateProductsDto.categoryId);
+        const updateProductDto: UpdateProductsDto = req.body;
+        if (updateProductDto.categoryId) {
+            const category = CategoriesModel.findById(updateProductDto.categoryId);
             if (!category) return res.status(400).json({message: 'Invalid category ID'});
         }
-        const product = ProductsModel.update(req.params.id, updateProductsDto);
+        const product = ProductsModel.update(req.params.id, updateProductDto);
         if (!product) return res.status(404).json({message: 'Product not found'});
         res.json(product);
     }

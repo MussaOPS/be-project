@@ -6,8 +6,8 @@ const router = Router();
 const usersController = new UsersController();
 
 // Public Routes
-router.post('/register', (req, res) => usersController.createUser(req, res));
-router.post('/login', (req, res) => usersController.login(req, res));
+router.post('/signup', (req, res) => usersController.createUser(req, res));
+router.post('/sign-in', (req, res) => usersController.login(req, res));
 
 // Protected Routes
 router.get('/', passport.authenticate('jwt', {session: false}), (req, res) => usersController.getAllUsers(req, res));
